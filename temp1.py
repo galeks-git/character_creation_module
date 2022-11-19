@@ -1,16 +1,72 @@
+"""
+     def accept_quest(self):
+        #self.start_time = datetime.now()
+        #self.start_time = datetime.datetime.now()
+        #if self.end_time != None :
+         #   return ('С этим испытанием вы уже справились.')
+        self.start_time = datetime.datetime.now()
+        return (f'Начало {self.name} положено.')
 
-from math import sqrt
+   def pass_quest(self):
+        #self.end_time = datetime.now()
+        #self.end_time = datetime.datetime.now()
+        if self.start_time != None :
+            return ('Нельзя завершить то, что не имеет начала!')
+        else :
+            print (dt.datetime.now())
+            self.end_time = dt.datetime.now()
+            completion_time = self.end_time - self.start_time
+            return (f'Квест {self.name} окончен. '
+                    f'Время выполнения квеста: {completion_time}.')
+"""                    
+
+# Импортируйте datetime. 
+import datetime
+#from datetime import datetime
+# Импортируйте time.
+import time
+#from datetime import time
 
 
-def calc(your_number):
-    """Вычисляет квадратный корень."""
-    if your_number <= 0:
-        return
-    print(f'Мы вычислили квадратный корень из введённого вами числа. '
-          f'Это будет:{sqrt(your_number)}')
+class Quest:
+    def __init__(self, name, description, goal):
+        self.name = name
+        self.description = description
+        self.goal = goal
+        self.start_time = None
+        self.end_time = None
+        # Допишите два свойства класса.
 
+            
+    # Напишите методы приема и сдачи квеста.
+    def accept_quest(self):
+        if self.end_time is not None:
+            return ('С этим испытанием вы уже справились.')
+        else:
+            self.start_time = datetime.datetime.now()
+            return (f'Начало "{self.name}" положено.')
+    
+    def pass_quest(self):
+            if self.start_time is None:
+                return ('Нельзя завершить то, что не имеет начала!')
+            else:
+                self.end_time = datetime.datetime.now()
+                completion_time = self.end_time - self.start_time
+                return (f'Квест "{self.name}" окончен. Время выполнения квеста {completion_time}')
+        
+        
 
-message = '''Добро пожаловать в самую лучшую программу для вычисления
-             квадратного корня из заданного числа'''
-print(message)
-calc(25.5)
+quest_name = 'Сбор пиксельники'
+quest_goal = 'Соберите 12 ягод пиксельники.'
+quest_description = '''
+В древнем лесу Кодоборье растёт ягода "пиксельника".
+Она нужна для приготовления целебных снадобий.
+Соберите 12 ягод пиксельники.'''
+
+new_quest = Quest(quest_name, quest_description, quest_goal) 
+
+print(new_quest.pass_quest())
+print(new_quest.accept_quest())
+time.sleep(3)
+print(new_quest.pass_quest())
+print(new_quest.accept_quest())
